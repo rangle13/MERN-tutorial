@@ -1,0 +1,102 @@
+
+db.products.insertMany(
+    [
+        {
+            "id": "1",
+            "inStock": TRUE,
+            "id": "1",
+            "item": "pot",
+            "buildate": new Date("Dec 3, 2025"),
+            "inventoryDate": new Date("Dec 5, 2025"),
+            "sold": new Date("Dec 15, 2025"),
+            "shipped": new Date("Dec 15, 2025"),
+            "category": [
+                "vase, kitchen, dining room"
+            ],
+            "description": "A very nice hand painted ceramic pot",
+            "colors": [
+                "red, blue"
+                ],
+            "group": [
+                2,
+                8,
+                33
+            ],
+            "price": $27.00,
+            "shippingCost": $3.00,
+            "soldTo": 39
+        },
+        {
+            "id": "2",
+            "inStock": TRUE,
+            "item": "bowl",
+            "buildate": new Date("Dec 3, 2025"),
+            "inventoryDate": new Date("Dec 5, 2025"),
+            "sold": new Date("Dec 15, 2025"),
+            "shipped": new Date("Dec 15, 2025"),
+            "category": [
+                "vase, kitchen, dining room"
+            ],
+            "description": "A very nice hand painted ceramic bowl",
+            "colors": [
+                "red, blue"
+                ],
+            "group": [
+                2,
+                8,
+                33
+            ],
+            "price": $27.00,
+            "shippingCost": $3.00,
+            "soldTo": 39
+        },
+        {
+            "id": "3",
+            "inStock": FALSE,
+            "item": "plate",
+            "buildate": new Date("Dec 3, 2025"),
+            "inventoryDate": new Date("Dec 5, 2025"),
+            "sold": new Date("Dec 15, 2025"),
+            "shipped": new Date("Dec 15, 2025"),
+            "category": [
+                "vase, kitchen, dining room"
+            ],
+            "description": "A very nice hand painted ceramic plate",
+            "colors": [
+                "red, blue"
+                ],
+            "group": [
+                2,
+                8,
+                33
+            ],
+            "price": $27.00,
+            "shippingCost": $3.00,
+            "soldTo": 39
+        },
+        {
+            "id": "4",
+            "inStock": TRUE,
+            "item": "cup",
+            "buildate": new Date("Dec 3, 2025"),
+            "inventoryDate": new Date("Dec 5, 2025"),
+            "sold": new Date("Dec 15, 2025"),
+            "shipped": new Date("Dec 15, 2025"),
+            "category": [
+                "vase, kitchen, dining room"
+            ],
+            "description": "A very nice hand painted ceramic cup",
+            "colors": [
+                "red, green"
+                ],
+            "group": [
+                2,
+                8,
+                33
+            ],
+            "price": $27.00,
+            "shippingCost": $3.00,
+            "soldTo": 39
+        }
+    ]
+);
