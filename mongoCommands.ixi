@@ -1,0 +1,227 @@
+var findMoviesByGenre = function(genre, pageNumber, pageSize){
+    var toSkip = 0;
+    if(pageNumber < 2){
+        toSkip = 0;
+    } else{
+        toSkip = (pageNumber -1) * pageSize;
+    }
+
+    var movies = db.movies.find(
+        {"genres" : genre},
+        {"_id" : 0, "title" :1})
+	.sort({"imdb.rating" : -1})
+	.skip(toSkip)
+	.limit(pageSize)
+	.toArray()
+	
+	/*
+ * Use find() function without a query condition
+ */
+// An empty find() function
+db.comments.find()
+
+// find() function with an empty document
+db.comments.find({})
+
+// find() function querying on a non existing field
+db.comments.find({"a_non_existent_field" : null})
+
+db.movies.distinct("genres", {"cast" : "Leonardo DiCaprio"})
+
+
+// 1.Number of movies Leonardo DiCaprio acted in 
+db.movies.countDocuments({"cast" : "Leonardo DiCaprio"})
+
+// list collections and views 
+db.getCollectionNames()
+
+// create view
+db.createView(
+    "short_movie_info",
+    "movies",
+    [ { $project: { "year": 1, "title":1, "plot":1}}]
+ )
+
+
+// list collections and views 
+db.getCollectionNames()
+
+// query the view
+db.short_movie_info.findOne()
+
+/**
+  * Your task for this exercise 
+  * Find all movies from the collection and print only the nested object field of 'awards'
+  * 
+  */
+db.movies.find(
+    {}, 
+    {
+        "awards" :1, 
+        "_id":0
+    }
+)
+
+/**
+  *
+  * Next task is to to find all movies from the collection 
+  *     and only print specific fields from the nested objects of 'awards'
+  * 
+  */
+db.movies.find(
+    {}, 
+    {
+        "awards.wins" :1, 
+        "awards.nominations" : 1,  
+        "_id":0
+    }
+)
+
+db.movies.insertMany(
+    [
+        {
+            "title": "Rocky",
+            "releaseDate": new Date("Dec 3, 1976"),
+            "genre": "Action",
+            "about": "A small-time boxer gets a supremely rare chance to fight a heavy-weight champion in a bout in which he strives to go the distance for his self-respect.",
+            "countries": ["USA"],
+            "cast" : ["Sylvester Stallone","Talia Shire","Burt Young"],
+            "writers" : ["Sylvester Stallone"],
+            "directors" : ["John G. Avildsen"]
+        },
+		
+		db.awards.insertOne(
+    {
+        "title": "Oscars",
+        "year": "1976",
+        "category": "Best Film",
+        "nominees": ["Rocky","All The President’s Men","Bound For Glory","Network","Taxi Driver"],
+        "winners" : 
+        [
+            {
+                "movie" : "Rocky"
+            }
+        ]
+    }
+)
+    
+db.awards.insertOne(
+    {
+        "title": "Oscars",
+        "year": "1976",
+        "category": "Actor In A Leading Role",
+        "nominees": ["PETER FINCH","ROBERT DE NIRO","GIANCARLO GIANNINI"," WILLIAM HOLDEN","SYLVESTER STALLONE"],
+        "winners" : 
+        [
+            {
+                "actor" : "PETER FINCH",
+                "movie" : "Network"
+            }
+        ]
+    }
+)
+
+ // Fetch the documents from the awards collection 
+ db.awards.find().pretty() 
+ 
+ /* 
+ * Comments which have incorrect movie id
+ *
+ */
+{
+    "_id" : ObjectId("5a9427658b0beebeb6975eaa"),
+    "name" : "Amy Phillips",
+    "email" : "amy_phillips@fakegmail.com",
+    "movie_id" : ObjectId("573a13bcf29313caabd57db6"),
+    "text" : "Porro aspernatur nobis velit iste. Rerum ipsum non quam nam architecto nisi. Quidem quia nemo ipsa quibusdam nesciunt.",
+    "date" : ISODate("2005-07-09T13:03:10Z")
+}
+{
+    "_id" : ObjectId("5a9427658b0beebeb6975eb3"),
+    "name" : "Barristan Selmy",
+    "email" : "ian_mcelhinney@gameofthron.es",
+    "movie_id" : ObjectId("573a13bcf29313caabd57db6"),
+    "text" : "Delectus doloribus inventore tempore cumque. Repellendus dolor sapiente voluptas explicabo et delectus rem qui. Odio atque quam tempore repellat delectus.",
+    "date" : ISODate("1986-05-28T11:17:06Z")
+}
+{
+    "_id" : ObjectId("5a9427658b0beebeb6975eb4"),
+    "name" : "Barristan Selmy",
+    "email" : "ian_mcelhinney@gameofthron.es",
+    "movie_id" : ObjectId("573a13bcf29313caabd57db6"),
+    "text" : "Voluptate iure illo nihil. Aliquid aspernatur quae id cumque fugit officia pariatur. Nam sequi soluta occaecati nam facilis sunt quasi.",
+    "date" : ISODate("1999-11-03T00:36:40Z")
+}
+
+
+/* 
+ * An update command to find all  three comments by id and update the field of movie_id
+ *
+ */
+db.comments.updateMany(
+    {
+        "_id" : {$in : [
+	    ObjectId("5a9427658b0beebeb6975eb3"),
+	    ObjectId("5a9427658b0beebeb6975eb4"),
+	    ObjectId("5a9427658b0beebeb6975eaa")
+	]}
+    },
+    {
+        $set : {"movie_id" : ObjectId("573a13abf29313caabd25582")}
+    }
+) 
+
+/* 
+ * Command to find Sherlock Holmes by id and reduce the comments count by 3
+ *
+ */
+db.movies.findOneAndUpdate(
+    {"_id" : ObjectId("573a13bcf29313caabd57db6")},
+    {$inc : {"num_mflix_comments" : -3}},
+    {
+        "returnNewDocument" : true,
+        "projection" : {"title" : 1, "num_mflix_comments" : 1}
+    }
+)
+
+/* 
+ * Command to find 50 First Dates by id and increase the comments count by 3
+ *
+ */
+db.movies.findOneAndUpdate(
+    {"_id" : ObjectId("573a13abf29313caabd25582")},
+    {$inc : {"num_mflix_comments" : 3}},
+    {
+    	"returnNewDocument" : true,
+        "projection" : {"title" : 1, "num_mflix_comments" : 1}
+    }
+)
+
+**
+  *
+  * Your task for this exercise 
+  * 1. Prepare a query with regular expression that matches four documents
+  * 2. Use the query expression in a delete operation and confirm only one document is removed
+  * 
+  */
+
+db.new_movies.deleteOne({"title" : {"$regex": "^movie"}})
+
+// Sample Output denotes one document is deleted
+// { "acknowledged" : true, "deletedCount" : 1 }
+
+/**
+  * Your task for this exercise 
+  * 1. Prepare and execute a delete command
+  * 2. The query condition should find movies by IMDb rating of less than 2
+  * 3. The IMDb vote count should be more than 50000
+  * 4. Find all such movies and delete the one with least number of awards
+  * 5. Return the deleted document in respose and include title field. 
+  * 
+  */
+db.movies.findOneAndDelete(
+    {"imdb.rating" : {$lt : 2},"imdb.votes" : {$gt : 50000}},
+    {
+        "sort" : {"awards.won":1},
+        "projection" : {"title" : 1}
+    }

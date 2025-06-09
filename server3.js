@@ -62,7 +62,7 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 async function listDatabases() {
     const client = new MongoClient('mongodb://localhost:27017');
     try {
-        await client.connect();
+        
         const databasesList = await client.db().admin().listDatabases();
         console.log('Databases:');
         databasesList.databases.forEach(db => console.log(` - ${db.name}`));
@@ -70,4 +70,19 @@ async function listDatabases() {
         await client.close();
     }
 }
+
+async function listDocuments() {
+    const client = new MongoClient('mongodb://localhost:27017');
+    try {
+        
+        const db = client.db('KPottery'); // replace 'test' with your database name
+        const collection = db.collection('blogposts'); // replace 'items' with your collection name
+        const documents = await collection.find().toArray();
+        console.log('Documents:here');
+        documents.forEach(doc => console.log(doc));
+    } finally {
+        await client.close();
+    }
+}
 listDatabases();
+listDocuments().catch(console.error);
