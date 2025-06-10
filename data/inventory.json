@@ -1,15 +1,13 @@
 
-db.products.insertMany(
     [
         {
-            "id": "1",
-            "inStock": TRUE,
-            "id": "1",
+            "id": "5",
+            "inStock": true,
             "item": "pot",
-            "buildate": new Date("Dec 3, 2025"),
-            "inventoryDate": new Date("Dec 5, 2025"),
-            "sold": new Date("Dec 15, 2025"),
-            "shipped": new Date("Dec 15, 2025"),
+            "buildate": "2025-12-03T00:00:00.000Z",
+            "inventoryDate": "2025-12-05T00:00:00.000Z",
+            "sold": "2025-12-15T00:00:00.000Z",
+            "shipped": "2025-12-15T00:00:00.000Z",
             "category": [
                 "vase, kitchen, dining room"
             ],
@@ -22,18 +20,18 @@ db.products.insertMany(
                 8,
                 33
             ],
-            "price": $27.00,
-            "shippingCost": $3.00,
+            "price": 27.00,
+            "shippingCost": 3.00,
             "soldTo": 39
         },
         {
-            "id": "2",
-            "inStock": TRUE,
+            "id": "6",
+            "inStock": true,
             "item": "bowl",
-            "buildate": new Date("Dec 3, 2025"),
-            "inventoryDate": new Date("Dec 5, 2025"),
-            "sold": new Date("Dec 15, 2025"),
-            "shipped": new Date("Dec 15, 2025"),
+            "buildate": "2025-12-03T00:00:00.000Z",
+            "inventoryDate": "2025-12-05T00:00:00.000Z",
+            "sold": "2025-12-15T00:00:00.000Z",
+            "shipped": "2025-12-15T00:00:00.000Z",
             "category": [
                 "vase, kitchen, dining room"
             ],
@@ -46,18 +44,18 @@ db.products.insertMany(
                 8,
                 33
             ],
-            "price": $27.00,
-            "shippingCost": $3.00,
+            "price": 27.00,
+            "shippingCost":3.00,
             "soldTo": 39
         },
         {
-            "id": "3",
-            "inStock": FALSE,
+            "id": "7",
+            "inStock": false,
             "item": "plate",
-            "buildate": new Date("Dec 3, 2025"),
-            "inventoryDate": new Date("Dec 5, 2025"),
-            "sold": new Date("Dec 15, 2025"),
-            "shipped": new Date("Dec 15, 2025"),
+            "buildate": "2025-12-03T00:00:00.000Z",
+            "inventoryDate": "2025-12-05T00:00:00.000Z",
+            "sold": "2025-12-15T00:00:00.000Z",
+            "shipped": "2025-12-15T00:00:00.000Z",
             "category": [
                 "vase, kitchen, dining room"
             ],
@@ -70,18 +68,18 @@ db.products.insertMany(
                 8,
                 33
             ],
-            "price": $27.00,
-            "shippingCost": $3.00,
+            "price": 27.00,
+            "shippingCost":3.00,
             "soldTo": 39
         },
         {
-            "id": "4",
-            "inStock": TRUE,
+            "id": "8",
+            "inStock": true,
             "item": "cup",
-            "buildate": new Date("Dec 3, 2025"),
-            "inventoryDate": new Date("Dec 5, 2025"),
-            "sold": new Date("Dec 15, 2025"),
-            "shipped": new Date("Dec 15, 2025"),
+            "buildate": "2025-12-03T00:00:00.000Z",
+            "inventoryDate": "2025-12-05T00:00:00.000Z",
+            "sold": "2025-12-15T00:00:00.000Z",
+            "shipped": "2025-12-15T00:00:00.000Z",
             "category": [
                 "vase, kitchen, dining room"
             ],
@@ -94,9 +92,8 @@ db.products.insertMany(
                 8,
                 33
             ],
-            "price": $27.00,
-            "shippingCost": $3.00,
+            "price": 27.00,
+            "shippingCost":3.00,
             "soldTo": 39
         }
     ]
-);
